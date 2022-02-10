@@ -1,0 +1,12 @@
+D:\NotificationPanel\NotificationPanel.Database\bin\Release\NotificationPanel.Database.dll.config
+D:\NotificationPanel\NotificationPanel.Database\bin\Release\NotificationPanel.Database.dll
+D:\NotificationPanel\NotificationPanel.Database\bin\Release\NotificationPanel.Database.pdb
+D:\NotificationPanel\NotificationPanel.Database\bin\Release\EntityFramework.dll
+D:\NotificationPanel\NotificationPanel.Database\bin\Release\EntityFramework.SqlServer.dll
+D:\NotificationPanel\NotificationPanel.Database\bin\Release\EntityFramework.xml
+D:\NotificationPanel\NotificationPanel.Database\bin\Release\EntityFramework.SqlServer.xml
+D:\NotificationPanel\NotificationPanel.Database\obj\Release\NotificationPanel.Database.csproj.AssemblyReference.cache
+D:\NotificationPanel\NotificationPanel.Database\obj\Release\NotificationPanel.Database.csproj.CoreCompileInputs.cache
+D:\NotificationPanel\NotificationPanel.Database\obj\Release\NotificationPanel.Database.csproj.CopyComplete
+D:\NotificationPanel\NotificationPanel.Database\obj\Release\NotificationPanel.Database.dll
+D:\NotificationPanel\NotificationPanel.Database\obj\Release\NotificationPanel.Database.pdb

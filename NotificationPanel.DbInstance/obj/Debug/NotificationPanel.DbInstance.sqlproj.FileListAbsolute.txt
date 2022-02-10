@@ -1,0 +1,15 @@
+C:\Users\NTECH\source\repos\NotificationPanel\NotificationPanel.DbInstance\bin\Debug\NotificationPanel.DbInstance.dacpac
+C:\Users\NTECH\source\repos\NotificationPanel\NotificationPanel.DbInstance\bin\Debug\NotificationPanel.DbInstance.dll
+C:\Users\NTECH\source\repos\NotificationPanel\NotificationPanel.DbInstance\bin\Debug\NotificationPanel.DbInstance.pdb
+C:\Users\NTECH\source\repos\NotificationPanel\NotificationPanel.DbInstance\obj\Debug\NotificationPanel.DbInstance.dll
+C:\Users\NTECH\source\repos\NotificationPanel\NotificationPanel.DbInstance\obj\Debug\NotificationPanel.DbInstance.pdb
+D:\NotificationPanel\NotificationPanel.DbInstance\bin\Debug\NotificationPanel.DbInstance.dacpac
+D:\NotificationPanel\NotificationPanel.DbInstance\bin\Debug\NotificationPanel.DbInstance.dll
+D:\NotificationPanel\NotificationPanel.DbInstance\bin\Debug\NotificationPanel.DbInstance.pdb
+D:\NotificationPanel\NotificationPanel.DbInstance\obj\Debug\NotificationPanel.DbInstance.dll
+D:\NotificationPanel\NotificationPanel.DbInstance\obj\Debug\NotificationPanel.DbInstance.pdb
+D:\NotificationPanel\NotificationPanel.DbInstance\obj\Debug\NotificationPanel.DbInstance.sqlproj.AssemblyReference.cache
+D:\NotificationPanel\NotificationPanel.DbInstance\obj\Debug\Model.xml
+D:\NotificationPanel\NotificationPanel.DbInstance\obj\Debug\refactor.xml
+D:\NotificationPanel\NotificationPanel.DbInstance\obj\Debug\postdeploy.sql
+D:\NotificationPanel\NotificationPanel.DbInstance\obj\Debug\predeploy.sql

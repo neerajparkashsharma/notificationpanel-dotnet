@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b4a3a483f48a4bca9a95160a064d815a" Name="Diagram1">
+        <EntityTypeShape EntityType="NotificationPanelModel.Notification" Width="1.5" PointX="6.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NotificationPanelModel.Role" Width="1.5" PointX="0.5" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NotificationPanelModel.sysdiagram" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NotificationPanelModel.User" Width="1.5" PointX="2.875" PointY="0.875" IsExpanded="true" />
+        <AssociationConnector Association="NotificationPanelModel.FK_Notification_User" ManuallyRouted="false" />
+        <AssociationConnector Association="NotificationPanelModel.FK_Notification_User1" ManuallyRouted="false" />
+        <AssociationConnector Association="NotificationPanelModel.FK_User_Role" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

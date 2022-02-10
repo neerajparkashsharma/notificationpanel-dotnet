@@ -1,0 +1,605 @@
+﻿
+@{
+    var onlineUsers = ViewBag.UserOnline;
+    var totalUsers = ViewBag.TotalUsersActive;
+    var disabledUsers = ViewBag.DisabledUsers;
+    var UnRead = ViewBag.unRead;
+}
+
+<style>
+
+    #divDashboards:hover {
+        box-shadow: 5px 10px 18px #888888;
+    }
+
+</style>
+<div class="container px-6 mx-auto grid">
+    <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+        Welcome to the Dashboard, @Session["Name"]
+    </h2>
+    
+    <!-- CTA -->
+
+    @*<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.11.2/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.2/js/dataTables.jqueryui.min.js"></script>
+    <link href="~/css/dataTables.jqueryui.min.css" rel="stylesheet" />*@
+
+    <!-- Cards -->
+    <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
+        <!-- Card -->
+        <div id="divDashboards" class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+            <div class="p-3 mr-4 text-orange-500 bg-orange-100 rounded-full dark:text-orange-100 dark:bg-orange-500">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"></path>
+                </svg>
+            </div>
+            <div>
+                <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                    Users Online
+                </p>
+                <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                    @onlineUsers.Count
+                </p>
+            </div>
+        </div>
+        <!-- Card -->
+        <div id="divDashboards" class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+            <div class="p-3 mr-4 text-green-500 bg-green-100 rounded-full dark:text-green-100 dark:bg-green-500">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"></path>
+                </svg>
+            </div>
+            <div>
+                <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                    Total Active Users
+                </p>
+                <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                    @totalUsers.Count
+                </p>
+            </div>
+        </div>
+        @if (Convert.ToInt64(Session["RoleId"])== 1)
+        {
+        <!-- Card -->
+        <div id="divDashboards" class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+            <div class="p-3 mr-4 text-blue-500 bg-blue-100 rounded-full dark:text-blue-100 dark:bg-blue-500">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"></path>
+                </svg>
+            </div>
+            <div>
+                <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                    Disabled Users
+                </p>
+                <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                    @(disabledUsers == null ? 0 : disabledUsers.Count)
+                </p>
+            </div>
+        </div>
+
+        }
+        <!-- Card -->
+    <div id="divDashboards" class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+        <div class="p-3 mr-4 text-teal-500 bg-teal-100 rounded-full dark:text-teal-100 dark:bg-teal-500">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd"
+                      d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z"
+                      clip-rule="evenodd"></path>
+            </svg>
+        </div>
+        <a href="/Notifications/Unread">
+            <div>
+
+                <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                    Unread Notifications
+                </p>
+                <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                    @(UnRead == null ? 0 : UnRead.Count)
+                </p>
+
+            </div>
+        </a>
+    </div>
+    </div>
+    <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+        Online Users
+    </h2>
+    <!-- New Table -->
+    <div class="w-full overflow-hidden rounded-lg shadow-xs" id="divv">
+        <div class="w-full overflow-x-auto" id="tablediv">
+            <table class="w-full whitespace-no-wrap" id="tbl">
+                <thead>
+                    <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                        <th class="px-4 py-3">NAME</th>
+                        <th class="px-4 py-3">EMAIL</th>
+                        <th class="px-4 py-3">STATUS</th>
+                        @*<th class="px-4 py-3">Date</th>*@
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+
+                    @foreach (var item in ViewBag.UserOnline)
+                    {
+                        <tr class="text-gray-700 dark:text-gray-400">
+                            <td class="px-4 py-3">
+                                <div class="flex items-center text-sm">
+                                    <!-- Avatar with inset shadow -->
+                                    <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
+                                        <img class="object-cover w-full h-full rounded-full"
+                                             src="@(item.Image == null ? "/Images/avatar.png" : "/Images/"+item.Image)"
+                                            onerror="this.src = '/Images/avatar.png';"
+                                             alt="@(item.Name)'s Avatar"
+                                              />
+                                        <div class="absolute inset-0 rounded-full shadow-inner"
+                                             aria-hidden="true"></div>
+                                    </div>
+                                    <div>
+                                        @if (Session["UserId"] != null &&Convert.ToInt64(Session["UserId"]) == item.Id)
+                                        {
+                                            <p class="font-semibold">You</p>
+
+
+                                        }
+                                        else
+                                        {
+                                            <p class="font-semibold">@item.Name</p>
+                                        }
+                                        <p class="text-xs text-gray-600 dark:text-gray-400">
+                                            User#@item.Id
+                                        </p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-4 py-3 text-sm">
+                                @item.Email
+                            </td>
+                            <td class="px-4 py-3 text-xs">
+                                <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
+                                    @item.IsOnlineStatus
+                                </span>
+                            </td>
+                            @*<td class="px-4 py-3 text-sm">
+                                    6/10/2020
+                                </td>*@
+                        </tr>
+                    }
+
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+        Last Online Users
+    </h2>
+    <div class="w-full overflow-hidden rounded-lg shadow-xs" id="divv2">
+        <div class="w-full overflow-x-auto" id="tablediv2">
+            <table class="w-full whitespace-no-wrap" id="tbl2">
+                <thead>
+                    <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                        <th class="px-4 py-3">NAME</th>
+                        <th class="px-4 py-3">EMAIL</th>
+                        <th class="px-4 py-3">LAST ONLINE </th>
+                        @*<th class="px-4 py-3">Date</th>*@
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+
+                    @foreach (var item in ViewBag.LastActiveUsers)
+                    {
+                        <tr class="text-gray-700 dark:text-gray-400">
+                            <td class="px-4 py-3">
+                                <div class="flex items-center text-sm">
+                                    <!-- Avatar with inset shadow -->
+                                    <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
+                                        <img class="object-cover w-full h-full rounded-full"
+                                             src="@(item.Image == null ? "/Images/avatar.png" : "/Images/"+item.Image)"
+                                             onerror="this.src = '/Images/avatar.png';"
+                                             alt="@(item.Name)'s Avatar"
+                                            />
+                                        <div class="absolute inset-0 rounded-full shadow-inner"
+                                             aria-hidden="true"></div>
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold">@item.Name</p>
+                                        <p class="text-xs text-gray-600 dark:text-gray-400">
+                                            (@item.RoleName)
+                                        </p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-4 py-3 text-sm">
+                                @item.Email
+                            </td>
+                            <td class="px-4 py-3 text-xs">
+                                <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
+                                    @item.LastOnlineDateTime
+                                </span>
+                            </td>
+
+                        </tr>
+                    }
+
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+        Total Active Users
+    </h2>
+    <!-- New Table -->
+    <div class="w-full overflow-hidden rounded-lg shadow-xs">
+        <div class="w-full overflow-x-auto" id="tablediv3">
+            <table class="w-full whitespace-no-wrap" id="tbl3">
+                <thead>
+                    <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                        <th class="px-4 py-3">NAME</th>
+                        <th class="px-4 py-3">EMAIL</th>
+                        <th class="px-4 py-3">STATUS</th>
+                        @if (Convert.ToInt64(Session["RoleId"])== 1)
+                        {
+
+
+                        <th class="px-4 py-3">ACTIONS</th>
+                        }
+                        @*<th class="px-4 py-3">Date</th>*@
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+
+                    @foreach (var item in @totalUsers)
+                    {
+
+                    <tr class="text-gray-700 dark:text-gray-400" data-id="@item.Id">
+                        <td class="px-4 py-3">
+                            <div class="flex items-center text-sm">
+                                <!-- Avatar with inset shadow -->
+                                <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
+                                    <img class="object-cover w-full h-full rounded-full"
+                                         src="@(item.Image == null ? "/Images/avatar.png" : "/Images/"+item.Image)"
+                                         onerror="this.src = '/Images/avatar.png';"
+                                         alt="@(item.Name)'s Avatar"
+                                         loading="lazy" />
+                                    <div class="absolute inset-0 rounded-full shadow-inner"
+                                         aria-hidden="true"></div>
+                                </div>
+                                <div>
+                                    @if (Session["UserId"] != null &&Convert.ToInt64(Session["UserId"]) == item.Id)
+                                    {
+                                        <p class="font-semibold">You</p>
+
+
+                                    }
+                                    else
+                                    {
+                                        <p class="font-semibold">@item.Name</p>
+                                    }
+                                    <p class="text-xs text-gray-600 dark:text-gray-400">
+                                      (@item.RoleName)
+                                    </p>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-4 py-3 text-sm">
+                            @item.Email
+                        </td>
+                        <td class="px-4 py-3 text-xs">
+                            <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
+                                @item.IsOnlineStatus
+                            </span>
+                        </td>
+                        @if (Session["UserId"] != null  && Convert.ToInt64(Session["RoleId"])== 1   )
+                        {
+
+                    <td class="px-4 py-3 text-xs">
+                        @if (Convert.ToInt64(Session["UserId"]) != item.Id)
+                        {
+
+                      
+                        <button data-id="@item.Id" id="Disable" class="px-6 py-2 font-medium leading-5 text-white transition-colors duration-150 bg-red-600 border border-transparent rounded-lg active:bg-red-600 hover:bg-red-700 focus:outline-none focus:shadow-outline-red">
+                            Disable
+                        </button>
+                        }
+                        <button data-id="@item.Id" id="EditUser" class="px-6 py-2 font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue">
+                            Edit
+                        </button>
+                    </td>
+                        }
+                        else
+                        {
+                        }
+                        @*<td class="px-4 py-3 text-sm">
+            6/10/2020
+        </td>*@
+                    </tr>
+                    }
+
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    @if (Convert.ToInt64(Session["RoleId"])== 1)
+    {
+
+    
+
+    <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+        Disabled Users
+    </h2>
+    <div class="w-full overflow-hidden rounded-lg shadow-xs" id="maindiv">
+        <div class="w-full overflow-x-auto" id="tablediv4" >
+            <table class="w-full whitespace-no-wrap" id="tbl4">
+                <thead>
+                    <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                        <th class="px-4 py-3">NAME</th>
+                        <th class="px-4 py-3">EMAIL</th>
+
+                        <th class="px-4 py-3">ACTIONS</th>
+                     
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+
+                    @foreach (var item in disabledUsers)
+                    {
+
+                        <tr class="text-gray-700 dark:text-gray-400" data-id="@item.Id">
+                            <td class="px-4 py-3">
+                                <div class="flex items-center text-sm">
+                                    <!-- Avatar with inset shadow -->
+                                    <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
+                                        <img class="object-cover w-full h-full rounded-full"
+                                             src="@(item.Image == null ? "/Images/avatar.png" : "/Images/"+item.Image)"
+                                             onerror="this.src = '/Images/avatar.png';"
+                                             alt="@(item.Name)'s Avatar"
+                                            />
+                                        <div class="absolute inset-0 rounded-full shadow-inner"
+                                             aria-hidden="true"></div>
+                                    </div>
+                                    <div>
+                                        @if (Session["UserId"] != null &&Convert.ToInt64(Session["UserId"]) == item.Id)
+                                        {
+                                            <p class="font-semibold">You</p>
+
+
+                                        }
+                                        else
+                                        {
+                                            <p class="font-semibold">@item.Name</p>
+                                        }
+                                    <p class="text-xs text-gray-600 dark:text-gray-400">
+                                        (@item.RoleName)
+                                    </p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-4 py-3 text-sm">
+                                @item.Email
+                            </td>
+                           
+                            @if (Session["UserId"] != null &&Convert.ToInt64(Session["UserId"]) != item.Id)
+                            {
+
+                                <td class="px-4 py-3 text-xs">
+                                    <button data-id="@item.Id" id="Enable" class="px-6 py-2 font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue">
+                                        Enable
+                                    </button>
+                                </td>
+                            }
+                            else
+                            {
+                                <td class="px-4 py-3 text-xs">
+                                </td>
+                            }
+                            @*<td class="px-4 py-3 text-sm">
+                                    6/10/2020
+                                </td>*@
+                        </tr>
+                    }
+
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    }
+</div>
+<script>
+
+    $(document).ready(function () {
+
+      
+        $("#tbl").DataTable();
+        $("#tbl2").DataTable();
+        $("#tbl3").DataTable();
+        $("#tbl4").DataTable();
+
+        $("#tablediv").css("background-color", "");
+        $("#tablediv a").css({
+            "background-color": '#7e3af2',
+            'border': 'none',
+            'color': 'white',
+            'font-size': '12px',
+
+        });
+        $(".dataTables_info").css("background-color", "");
+
+
+
+        $("#tablediv2").css("border", "none");
+
+        $("#tablediv2 a").css({
+        "background-color": '#7e3af2',
+        'border': 'none',
+        'color': 'white',
+        'font-size': '12px',
+
+        });
+
+        $("#tablediv3").css("border", "none");
+        $("#tablediv3 a").css({
+            "background-color": '#7e3af2',
+            'border': 'none',
+            'color': 'white',
+            'font-size': '12px',
+
+        });
+
+        $("#tablediv4").css("border", "none");
+        $("#tablediv4 a").css({
+            "background-color": '#7e3af2',
+            'border': 'none',
+            'color': 'white',
+            'font-size': '12px',
+
+        });
+
+
+
+
+        $("#tbl4_info").css
+            ({
+                "color": "#707275", "text-transform": "uppercase", 'letter- spacing':
+                    '.025em', 'font-size': '.75rem',
+                'font-weight':
+                    '600'
+            }); $("#tbl3_info").css
+                ({
+                    "color": "#707275", "text-transform": "uppercase", 'letter- spacing':
+                        '.025em', 'font-size': '.75rem',
+                    'font-weight':
+                        '600'
+                });
+
+        $("#tbl2_info").css
+            ({
+                "color": "#707275", "text-transform": "uppercase", 'letter- spacing':
+            '.025em', 'font-size': '.75rem',
+            'font-weight':
+                '600'
+            });
+        $("#tbl_info").css
+                ({
+                    "color": "#707275", "text-transform": "uppercase", 'letter- spacing':
+                        '.025em', 'font-size': '.75rem',
+                    'font-weight':
+                        '600'
+                });
+    //$("a").removeClass("fg-button ui-button ui-state-default previous ui-state-disabled");
+    //$("a").addClass("px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple");
+
+
+
+    $("Tbody Tr").hover(function () {
+        $(this).css("background-color", "#7e3af2");
+        $(this).css("cursor", "pointer");
+    }, function () {
+        $(this).css("background-color", "");
+    });
+
+
+
+         $('Tbody tr #Disable').click(function () {
+             var Id = $(this).data("id");
+            $.ajax({
+
+                    type: "POST",
+
+                    url: '@Url.Action("Delete", "Users")',
+
+                    dataType: "json",
+
+                    data: JSON.stringify({ Id }),
+
+                    contentType: "application/json; charset=utf-8",
+
+                    dataType: "json",
+
+                    success: function (data) {
+
+                        location.reload();
+
+                    }
+
+            });
+
+         });
+
+
+        $('Tbody tr #Enable').click(function () {
+            var Id = $(this).data("id");
+            $.ajax({
+
+                type: "POST",
+
+                url: '@Url.Action("ReActive", "Users")',
+
+                dataType: "json",
+
+                data: JSON.stringify({ Id }),
+
+                contentType: "application/json; charset=utf-8",
+
+                dataType: "json",
+
+                success: function (data) {
+
+                    location.reload();
+
+                }
+
+            });
+
+        });
+
+
+
+            @*$.ajax({
+
+                    type: "POST",
+
+                    url: '@Url.Action("Read", "Notifications")',
+
+                    dataType: "json",
+
+                    data: JSON.stringify({ Id }),
+
+                    contentType: "application/json; charset=utf-8",
+
+                    dataType: "json",
+
+                    success: function (data) {
+
+                        console.log(data);
+
+                    }
+
+            });*@
+
+            $('Tbody tr #EditUser').click(function () {
+            var Id = $(this).data("id");
+           
+
+            window.open(`/Users/Create/${Id}`, "_self")
+
+
+        });
+
+
+    });
+
+
+
+</script>

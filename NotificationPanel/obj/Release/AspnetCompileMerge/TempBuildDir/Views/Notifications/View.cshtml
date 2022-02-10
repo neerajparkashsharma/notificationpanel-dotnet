@@ -1,0 +1,267 @@
+﻿
+@{
+    ViewBag.Title = "View";
+}
+
+@{
+
+    var item = ViewBag.data;
+    var currentUserId = NotificationPanel.Common.Current.CurrentUser.Id;
+
+    <div class="flex items-center min-h-screen p-6 bg-gray-50 dark:bg-gray-900">
+        <div class="flex-1 h-full max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800">
+            <div class="flex flex-col overflow-y-auto md:flex-row">
+
+                <div class="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
+                    <div class="w-full">
+                        <h1 style="margin-bottom:0px;" class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
+                            Notification
+                        </h1>
+
+                        @if (@item.CreatedOn != null)
+                        {
+                            <label class="block text-sm">
+                                <span class="text-gray-700 dark:text-gray-400">Sent On @item.CreatedOn</span>
+
+                            </label>
+                        }
+
+
+                        <hr class="my-8" />
+
+
+                        <label class="block text-sm" style="margin-top: 10px;">
+                            <span class="text-gray-700 dark:text-gray-400">From </span>
+
+                        </label>
+
+                        @if (currentUserId == item.SenderId)
+                        {
+                            <h1 class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
+                                <img class="object-cover w-8 h-8 rounded-full" src="@(item.SenderImage == null ? "/Images/avatar.png" : "/Images/"+item.SenderImage)"
+                                     onerror="this.src = '/Images/avatar.png';"
+                                     alt="@(item.SenderImage)'s Avatar" width="100" style="border-radius:50%;" height="100">
+
+
+                                You
+
+
+
+                            </h1>
+                        }
+
+                        else
+                        {<h1 class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
+
+                                <img class="object-cover w-8 h-8 rounded-full" src="@(item.SenderImage == null ? "/Images/avatar.png" : "/Images/"+item.SenderImage)"
+                                     onerror="this.src = '/Images/avatar.png';"
+                                     alt="@(item.SenderImage)'s Avatar" width="100" style="border-radius:50%;" height="100">
+                                @item.SenderName
+                            </h1>
+                        }
+
+
+                        <label class="block text-sm" style="margin-top: 10px;">
+                            <span class="text-gray-700 dark:text-gray-400">To </span>
+
+                        </label>
+
+
+                        @if (currentUserId == item.ReceiverId)
+                        {
+                            <h1 class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
+                                <img class="object-cover w-8 h-8 rounded-full" src="@(item.ReceiverImage == null ? "/Images/avatar.png" : "/Images/"+item.ReceiverImage)"
+                                     onerror="this.src = '/Images/avatar.png';"
+                                     alt="@(item.ReceiverName)'s Avatar" width="100" style="border-radius:50%;" height="100">
+
+
+                                You
+
+
+
+                            </h1>
+                        }
+
+                        else
+                        {<h1 class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
+
+                                <img class="object-cover w-8 h-8 rounded-full" src="@(item.ReceiverImage== null ? "/Images/avatar.png" : "/Images/"+item.ReceiverImage)"
+                                     onerror="this.src = '/Images/avatar.png';"
+                                     alt="@(item.ReceiverName)'s Avatar" width="100" style="border-radius:50%;" height="100">
+                                @item.ReceiverImage
+                            </h1>
+                        }
+
+
+
+                        <label class="block text-sm">
+                            <span class="text-gray-700 dark:text-gray-400">Subject </span>
+
+                        </label>
+
+
+
+                        <h1 class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
+                            @item.Subject
+                        </h1>
+
+
+                        <label class="block text-sm">
+                            <span class="text-gray-700 dark:text-gray-400">Notification </span>
+
+                        </label>
+
+                        <h1 class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
+                            @item.NotificationText
+
+
+
+
+
+
+
+                        </h1>
+
+                        @if (item.IsRead == true && item.Image == null && item.SenderId == currentUserId)
+                        {
+                            <span class="material-icons" style="font-size:20px; color:red;">
+                                done_all
+                            </span>
+
+
+                            if (item.ReadOn.ToString("dd-MM-yyyy") == DateTime.Today.ToString("dd-MM-yyyy"))
+                            {
+                                <span style="font-size:12px;">
+                                    Today at @string.Format("{0:hh:mm:ss tt}", item.ReadOn)
+                                </span>
+                            }
+
+                            else if (item.ReadOn.ToString("dd-MM-yyyy") == DateTime.Today.AddDays(-1).ToString("dd-MM-yyyy"))
+                            {
+                                <span style="font-size:12px;">
+                                    Yesterday at @string.Format("{0:hh:mm:ss tt}", item.ReadOn)
+                                </span>
+                            }
+                            else
+                            {
+                                <span style="font-size:12px;">
+                                    @string.Format("{0:dd-MM-yyyy}", item.ReadOn) at   @string.Format("{0: hh:mm:ss tt}", item.ReadOn)
+                                </span>
+                            }
+
+
+
+                        }
+
+                        @if (@item.Image != null)
+                        {
+
+
+                            <label class="block text-sm">
+                                <span class="text-gray-700 dark:text-gray-400">Attachment</span>
+                            </label>
+
+                            <h1 class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
+
+
+                                <a href="~/Images/@item.Image" class="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple" download> <object data="~/Images/download-solid.svg" width="15" height="20"> </object> @item.Image</a>
+
+                            </h1>
+
+                            if (item.IsRead == true && item.SenderId == currentUserId)
+                            {
+                                <span class="material-icons" style="font-size:20px; color:red;">
+                                    done_all
+                                </span>
+
+
+                                if (item.ReadOn.ToString("dd-MM-yyyy") == DateTime.Today.ToString("dd-MM-yyyy"))
+                                {
+                                    <span style="font-size:12px;">
+                                        Today at @string.Format("{0:hh:mm:ss tt}", item.ReadOn)
+                                    </span>
+                                }
+
+                                else if (item.ReadOn.ToString("dd-MM-yyyy") == DateTime.Today.AddDays(-1).ToString("dd-MM-yyyy"))
+                                {
+                                    <span style="font-size:12px;">
+                                        Yesterday at @string.Format("{0:hh:mm:ss tt}", item.ReadOn)
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span style="font-size:12px;">
+                                        @string.Format("{0:dd-MM-yyyy}", item.ReadOn) at   @string.Format("{0: hh:mm:ss tt}", item.ReadOn)
+                                    </span>
+                                }
+
+
+
+
+                            }
+
+                        }
+
+
+                        <!-- You should use a button here, as the anchor is only used for the example  -->
+
+
+                        <hr class="my-8" />
+                        @if (item.SenderId != currentUserId)
+                        {
+
+
+
+                            <label class="block text-sm">
+
+
+                                <span class="text-gray-700 dark:text-gray-400">
+                                    <label id="replylbl">   Reply </label>
+                                </span>
+                            </label>
+
+                            <form action="/Notifications/Compose/" method="post" name="action">
+
+                                <div class='input-field col s8'>
+
+                                    <input type="hidden" name="ReceiverId" value="@item.SenderId" />
+                                    <input type="hidden" name="SenderId" value="@item.ReceiverId" />
+                                    <input type="hidden" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input required type='text'" id='Subject' name='Subject' value="@item.Subject" />
+
+                                    <textarea style="display:none;" id="replyNotification" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input required" name='NotificationText'></textarea>
+
+
+                                    <label class="block mt-4 text-sm">
+                                        <span id="txtUploadfile" class="text-gray-700 dark:text-gray-400" hidden>Upload File</span>
+                                        <input hidden type="file" name="file" id="file" class="btn btn-primary" accept="image/*" />
+
+                                    </label>
+
+                                    <button style="margin-top:20px; display:none"  id="btnSend" class="px-10 py-2 font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                                        Send
+                                    </button>
+
+                                </div>
+
+
+                            </form>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<script>
+
+    $(document).ready(function () {
+
+        $("#replylbl").click(function () {
+            $("#txtUploadfile").show();
+            $("#file").show();
+            $("#btnSend").show();
+            $("#replyNotification").show();
+
+        })
+    });
+</script>

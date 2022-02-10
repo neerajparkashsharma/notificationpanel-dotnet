@@ -1,0 +1,26 @@
+﻿
+.material-icons {
+    font-size: 12px;
+}
+
+li:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+
+
+li.dropdown ul {
+    display: none; /*To hide the items while loading the page */
+}
+
+.container {
+    width: 100%;
+    float: left;
+}
+
+    /* Main style part for the menu and items look and feel */
+    .container .cssState {
+        float: left;
+        display: block;
+        cursor: pointer;
+    }

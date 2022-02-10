@@ -1,0 +1,105 @@
+﻿
+@{
+    ViewBag.Title = "Profile";
+}
+
+
+@{var Item = ViewBag.data;
+
+
+
+    <div class="flex items-center min-h-screen p-6 bg-gray-50 dark:bg-gray-900">
+        <div class="flex-1 h-full max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800">
+            <div class="flex flex-col overflow-y-auto md:flex-row">
+
+               
+                <div class="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
+                    <div class="w-full">
+                        <img   src="@(Item.Image == null ? "/Images/avatar.png" : "/Images/"+ Item.Image)"
+                                                        
+                                                         alt="@(Item.Name)'s Avatar"
+                                         width="80" height="90" style="border-radius:50%; margin-bottom:30px;"/>
+                        <h1 class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
+                            Your Profile
+                            
+                        </h1>
+                        
+                        <label class="block text-sm">
+                            <span class="text-gray-700 dark:text-gray-400">Name</span>
+
+                        </label>
+
+                        <h1 class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
+                            @Item.Name
+                        </h1>
+
+
+
+                        <label class="block text-sm">
+                            <span class="text-gray-700 dark:text-gray-400">Email</span>
+
+                        </label>
+
+                        <h1 class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
+                            @Item.Email
+                        </h1>
+
+                        <label class="block text-sm">
+                            <span class="text-gray-700 dark:text-gray-400">Gender</span>
+
+                        </label>
+
+                        <h1 class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
+                            @Item.Gender
+                        </h1>
+
+                        <label class="block text-sm">
+                            <span class="text-gray-700 dark:text-gray-400">Date Of Birth</span>
+
+                        </label>
+
+                        <h1 class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
+                            @Item.DOBString
+                        </h1>
+
+                        <label class="block text-sm">
+                            <span class="text-gray-700 dark:text-gray-400">Role</span>
+
+                        </label>
+
+                        <h1 class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
+                            @Item.RoleName
+                        </h1>
+
+
+                        <label class="block text-sm">
+                            <span class="text-gray-700 dark:text-gray-400">Address</span>
+
+                        </label>
+
+                        <h1 class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
+                            @(Item.Address == null ? "n/a" : Item.Address) 
+                        </h1>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
+
+}
+
+@*<script>
+
+
+    var val2 = "@Item.DOB";
+
+    $("#dob").val(val2);
+
+
+    var vall = "@Item.Address";
+    $('#address').val(vall);
+</script>*@

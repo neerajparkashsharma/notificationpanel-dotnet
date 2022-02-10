@@ -1,0 +1,334 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+
+}
+
+
+
+
+
+@{
+    var Item = ViewBag.Item;
+
+
+    <h2 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300">
+        Create User Account
+    </h2>
+    <form action="/Users/Create/" method="post" name="action" enctype="multipart/form-data" data-success-function="Item.SuccessRedirect">
+
+        <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
+            <label class="block text-sm">
+                <input id="Id" name="Id" value="@Item.Id" hidden>
+                <span class="text-gray-700 dark:text-gray-400">Name</span>
+                <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                       name="Name" value="@Item.Name" placeholder="Enter Name" required />
+            </label>
+
+
+
+            <label class="block text-sm">
+                <span class="text-gray-700 dark:text-gray-400">Email</span>
+                <input type="email" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                       name="Email" value="@Item.Email" placeholder="Email Address" id="Email" required />
+                
+                <span style="color:blueviolet" id="CheckEmail">Check Email</span>
+             
+                <span id="SpanMessage">
+
+                </span>
+            </label>
+
+         
+
+
+
+
+            <label class="block text-sm">
+                <span class="text-gray-700 dark:text-gray-400">Password</span>
+                <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                       name="Password" id="password" value="@Item.Password" type="password" placeholder="***********" required />
+            </label>
+
+            @if (Item.DOB != null)
+            {
+
+
+                <label class="block text-sm">
+                    <span class="text-gray-700 dark:text-gray-400">Date Of Birth</span>
+                    <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input datepicker"
+                           name="DOB" value="@(Item.DOB.ToString("yyyy-MM-dd"))" type="date" required />
+
+
+                </label>
+            }
+            else
+            {
+                <label class="block text-sm">
+                    <span class="text-gray-700 dark:text-gray-400">Date Of Birth</span>
+                    <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input datepicker"
+                           name="DOB" value="@(Item.DOB)" type="date" required />
+
+
+                </label>
+            }
+
+
+            <label class="block text-sm">
+                <span class="text-gray-700 dark:text-gray-400">Phone</span>
+                <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                       name="Phone" value="@Item.Phone" type="number" placeholder="03##-#######" required />
+
+
+            </label>
+
+
+            <label class="block mt-4 text-sm">
+                <span class="text-gray-700 dark:text-gray-400">
+                    Role
+                </span>
+
+
+                @if (Item.RoleId == 1)
+                {
+                    <select required value="@Item.RoleId" name="RoleId" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+                        <option value="1" selected>Admin</option>
+                        <option value="2">Employee</option>
+
+                    </select>
+                }
+                else if (Item.RoleId == 2)
+                {
+                    <select required value="@Item.RoleId" name="RoleId" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+                        <option value="1">Admin</option>
+                        <option value="2" selected>Employee</option>
+
+                    </select>
+                }
+                else
+                {
+                    <select required value="@Item.RoleId" name="RoleId" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+                        <option value="1">Admin</option>
+                        <option value="2">Employee</option>
+
+                    </select>
+                }
+            </label>
+
+            @*@Html.DropDownList("RoleId", ViewBag.Roles as SelectList, "Select Role");*@
+            <label class="block mt-4 text-sm">
+                <span class="text-gray-700 dark:text-gray-400">
+                    Gender
+                </span>
+
+                @if (Item.Gender == "Male")
+                {
+
+
+                    <select required value="@Item.Gender" name="Gender" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+                        <option selected>Male</option>
+                        <option>Female</option>
+                        <option>Better not say</option>
+                    </select>
+                }
+                else if (Item.Gender == "Female")
+                {<select required value="@Item.Gender" name="Gender" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+                        <option>Male</option>
+                        <option selected>Female</option>
+                        <option>Better not say</option>
+                    </select>
+
+                }
+                else if (Item.Gender == "Better not say")
+                {<select required value="@Item.Gender" name="Gender" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+
+                        <option>Male</option>
+                        <option>Female</option>
+                        <option selected>Better not say</option>
+                    </select>
+                }
+                else
+                {
+                    <select required value="@Item.Gender" name="Gender" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+
+                        <option>Male</option>
+                        <option>Female</option>
+                        <option>Better not say</option>
+                    </select>
+                }
+            </label>
+
+
+            <label class="block mt-4 text-sm">
+                <span class="text-gray-700 dark:text-gray-400">Address</span>
+
+
+
+
+
+
+            </label>
+
+            <div class='input-field col s8'>
+
+                <input required class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" type='text' id=Address
+                       value="@(Item.Address)" name="Address" />
+
+            </div>
+
+
+           
+
+
+            @if (Item.Image != null)
+            {
+
+
+        <label class="block mt-4 text-sm">
+            <span class="text-gray-700 dark:text-gray-400">Previous Display Image</span>
+            <img src="/Images/@Item.Image" width="250" height="250" />
+
+            Want to replace? 
+            <input type="file" name="file" id="file" class="btn btn-primary" accept=".jpg, .jpeg, .png" />
+        </label>
+            }
+            else
+            {
+                <label class="block mt-4 text-sm">
+                    <span class="text-gray-700 dark:text-gray-400">Display Image</span>
+                    <input type="file" name="file" id="file" class="btn btn-primary" accept=".jpg, .jpeg, .png" />
+
+                </label>
+
+            }
+
+
+
+
+
+
+
+            @*<label class="block mt-4 text-sm">
+            <span class="text-gray-700 dark:text-gray-400">
+                Select Role
+            </span>
+            @Html.DropDownList("RoleList", null, new { @class = "form-control" })
+        </label>*@
+
+            <label class="block mt-4 text-sm">
+                <button class="px-10 py-4 font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple" id="btnSubmit">
+
+                    @if (Item.Id > 0)
+                    {
+                        <span>Edit User</span>
+                    }
+                    else
+                    {
+                        <span>Create User</span>
+                    }
+                </button>
+            </label>
+
+        </div>
+
+
+
+        <div hidden style="display:none;">
+            <input hidden name="CreatedOn" value="@Item.CreatedOn" />
+            <input hidden name="CreatedBy" value="@Item.CreatedBy" />
+            <input hidden name="Image" value="@Item.Image" />
+
+        </div>
+    </form>
+
+
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+
+
+
+    var Item = {
+        SuccessRedirect: function (data) {
+            if (data.IsSuccess == true) {
+                window.open('/Home/UserDashboard', '_self')
+            }
+        }
+    }
+
+
+    $('#CheckEmail').click(function () {
+      
+        var Email = $("#Email").val();
+       
+            $.ajax({
+
+                type: "POST",
+
+                url: '@Url.Action("CheckEmail", "Users")',
+
+                dataType: "json",
+
+                data: 
+                   '{Email:"'+Email+'"}',
+           
+
+                contentType: "application/json; charset=utf-8",
+
+                
+                
+                success: function (EmailExists) {
+                    var Message = $("#SpanMessage");
+                    if (EmailExists) {
+                        Message.html("Email Already Exists!");
+                        Message.css("color", "Red");
+
+                        $("#btnSubmit").prop("disabled", true);
+                    }
+                    else {
+                        Message.html("");
+                        $("#btnSubmit").prop("disabled", false);
+                   
+                    }
+
+                },
+                error: function (error) {
+                    /*alert('error');*/
+                }
+            });
+
+        
+        })
+
+
+    //function CheckEmail() {
+
+    //    var Email = $("#Email").val();
+
+    //    $.ajax({
+
+    //        type: 'POST',
+    //        URL: "/Users/CheckEmail",
+    //        data: '{Email:"' + Email + '"}',
+
+    //        dataType: "json",
+    //        success: function (EmailExists) {
+    //            var Message = $("#SpanMessage");
+    //            if (EmailExists) {
+    //                Message.html("Email Already Exists!");
+    //                Message.css("color", "Red");
+
+
+    //            }
+    //            else {
+    //                Message.html("Email Available For Registration!");
+    //                Message.css("color", "green");
+    //            }
+    //        }
+
+    //    });
+    //}
+
+</script>
+

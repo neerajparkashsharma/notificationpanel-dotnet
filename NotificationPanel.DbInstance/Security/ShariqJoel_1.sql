@@ -1,0 +1,3 @@
+﻿CREATE LOGIN [ShariqJoel]
+    WITH PASSWORD = N'qwOp.w8||Txe|ar{dammpigemsFT7_&#$!~<MCtie3um6ztg', SID = 0xE0689347006620408F3378456D3FAEDE, DEFAULT_LANGUAGE = [us_english], CHECK_EXPIRATION = ON;
+

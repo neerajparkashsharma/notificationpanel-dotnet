@@ -1,0 +1,86 @@
+26/10/2021 12:26:16 PM	This log contains information about the import schema operation into project 'NotificationPanel.DbInstance' on computer 'DESKTOP-B8EBUJ1' by user 'NPS'.
+26/10/2021 12:26:16 PM	Import of database schema has started.
+26/10/2021 12:26:23 PM	Gathering database credentials
+26/10/2021 12:26:23 PM	Gathering database options
+26/10/2021 12:26:23 PM	Gathering generic database scoped configuration option
+26/10/2021 12:26:23 PM	Gathering users
+26/10/2021 12:26:23 PM	Gathering roles
+26/10/2021 12:26:23 PM	Gathering application roles
+26/10/2021 12:26:23 PM	Gathering role memberships
+26/10/2021 12:26:23 PM	Gathering filegroups
+26/10/2021 12:26:23 PM	Gathering full-text catalogs
+26/10/2021 12:26:23 PM	Gathering assemblies
+26/10/2021 12:26:23 PM	Gathering certificates
+26/10/2021 12:26:23 PM	Gathering asymmetric keys
+26/10/2021 12:26:23 PM	Gathering symmetric keys
+26/10/2021 12:26:23 PM	Gathering encrypted symmetric keys
+26/10/2021 12:26:23 PM	Gathering schemas
+26/10/2021 12:26:23 PM	Gathering XML schema collections
+26/10/2021 12:26:23 PM	Gathering user-defined data types
+26/10/2021 12:26:23 PM	Gathering user-defined types
+26/10/2021 12:26:23 PM	Gathering table types
+26/10/2021 12:26:23 PM	Gathering unique keys for table types
+26/10/2021 12:26:23 PM	Gathering primary keys for table types
+26/10/2021 12:26:23 PM	Gathering indexes for table types
+26/10/2021 12:26:23 PM	Gathering check constraints for table types
+26/10/2021 12:26:23 PM	Gathering default constraints for table types
+26/10/2021 12:26:23 PM	Gathering partition functions
+26/10/2021 12:26:23 PM	Gathering partition schemes
+26/10/2021 12:26:24 PM	Gathering functions
+26/10/2021 12:26:24 PM	Gathering encrypted functions
+26/10/2021 12:26:24 PM	Gathering aggregates
+26/10/2021 12:26:24 PM	Gathering procedures
+26/10/2021 12:26:24 PM	Gathering encrypted procedures
+26/10/2021 12:26:24 PM	Gathering tables
+26/10/2021 12:26:24 PM	Gathering primary keys
+26/10/2021 12:26:24 PM	Gathering unique constraints
+26/10/2021 12:26:24 PM	Gathering foreign keys
+26/10/2021 12:26:24 PM	Gathering default constraints
+26/10/2021 12:26:24 PM	Gathering check constraints
+26/10/2021 12:26:24 PM	Gathering views
+26/10/2021 12:26:25 PM	Gathering encrypted views
+26/10/2021 12:26:25 PM	Gathering indexes
+26/10/2021 12:26:25 PM	Gathering statistics
+26/10/2021 12:26:25 PM	Gathering full-text index stoplists
+26/10/2021 12:26:25 PM	Gathering search property lists
+26/10/2021 12:26:25 PM	Gathering search properties
+26/10/2021 12:26:25 PM	Gathering full-text indexes
+26/10/2021 12:26:25 PM	Gathering column store indexes
+26/10/2021 12:26:25 PM	Gathering spatial indexes
+26/10/2021 12:26:25 PM	Gathering XML indexes
+26/10/2021 12:26:25 PM	Gathering Selective XML indexes
+26/10/2021 12:26:25 PM	Gathering encrypted triggers
+26/10/2021 12:26:25 PM	Gathering triggers
+26/10/2021 12:26:25 PM	Gathering encrypted and clr ddl triggers
+26/10/2021 12:26:25 PM	Gathering ddl triggers
+26/10/2021 12:26:25 PM	Creating edge constraints
+26/10/2021 12:26:25 PM	Gathering synonyms
+26/10/2021 12:26:25 PM	Gathering defaults
+26/10/2021 12:26:25 PM	Gathering data constraint uddt bindings
+26/10/2021 12:26:25 PM	Gathering rules
+26/10/2021 12:26:25 PM	Gathering data constraint uddt bindings
+26/10/2021 12:26:25 PM	Gathering message types
+26/10/2021 12:26:25 PM	Gathering queues
+26/10/2021 12:26:25 PM	Gathering contracts
+26/10/2021 12:26:25 PM	Gathering services
+26/10/2021 12:26:25 PM	Gathering event notifications
+26/10/2021 12:26:25 PM	Gathering remote service bindings
+26/10/2021 12:26:25 PM	Gathering broker priorities
+26/10/2021 12:26:25 PM	Gathering signatures
+26/10/2021 12:26:25 PM	Gathering data compression options
+26/10/2021 12:26:25 PM	Gathering sequence types
+26/10/2021 12:26:25 PM	Gathering security policies
+26/10/2021 12:26:25 PM	Gather column encryption keys
+26/10/2021 12:26:25 PM	Gathering column master keys
+26/10/2021 12:26:25 PM	Gathering external data sources
+26/10/2021 12:26:25 PM	Gathering external file formats
+26/10/2021 12:26:25 PM	Gathering external tables
+26/10/2021 12:26:25 PM	Gathering extended properties
+26/10/2021 12:26:26 PM	Gathering credentials
+26/10/2021 12:26:26 PM	Gathering logins
+26/10/2021 12:26:26 PM	Gathering server audits
+26/10/2021 12:26:26 PM	Scanning project for duplicate elements
+26/10/2021 12:26:26 PM	Finished duplicate element processing
+26/10/2021 12:26:26 PM	Finished importing database.
+26/10/2021 12:26:26 PM	A summary of the import was saved to the following location: C:\Users\NTECH\source\repos\NotificationPanel\NotificationPanel.DbInstance\Import Schema Logs\NotificationPanel.Db_20211026072616.log
+26/10/2021 12:26:26 PM	Click Finish to continue...

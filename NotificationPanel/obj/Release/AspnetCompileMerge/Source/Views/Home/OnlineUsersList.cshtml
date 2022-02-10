@@ -1,0 +1,48 @@
+﻿
+<div class="panel-body">
+    <ul class="nav nav-pills nav-stacked labels-info ">
+        <li>
+            <h4>Friends Online</h4>
+        </li>
+       
+
+        @for (var i = 0; i < ViewBag.list; i++)
+        {
+            var item = ViewBag.list[i];
+            var nom = i + 1;
+            @*<tr data-id="@item.Id">
+                <td>@nom</td>
+
+
+                <td>@item.Name</td>
+                <td>@item.Gender</td>
+
+
+            </tr>*@
+
+
+            <li>
+                <a href="#">
+                    <img src="~/img/friends/fr-10.jpg" class="img-circle" width="20"> @item.Name
+                    <p><span class="label label-success">Online</span></p>
+                </a>
+            </li>
+
+
+        }
+
+    </ul>
+
+    <div class="inbox-body text-center inbox-action">
+        <div class="btn-group">
+            <a class="btn mini btn-default" href="javascript:;">
+                <i class="fa fa-power-off"></i>
+            </a>
+        </div>
+        <div class="btn-group">
+            <a class="btn mini btn-default" href="javascript:;">
+                <i class="fa fa-cog"></i>
+            </a>
+        </div>
+    </div>
+</div>

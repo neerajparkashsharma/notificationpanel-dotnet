@@ -1,0 +1,5 @@
+D:\NotificationPanel\NotificationPanel.DbInstance\bin\Release\NotificationPanel.DbInstance.dacpac
+D:\NotificationPanel\NotificationPanel.DbInstance\bin\Release\NotificationPanel.DbInstance.dll
+D:\NotificationPanel\NotificationPanel.DbInstance\bin\Release\NotificationPanel.DbInstance.pdb
+D:\NotificationPanel\NotificationPanel.DbInstance\obj\Release\NotificationPanel.DbInstance.dll
+D:\NotificationPanel\NotificationPanel.DbInstance\obj\Release\NotificationPanel.DbInstance.pdb

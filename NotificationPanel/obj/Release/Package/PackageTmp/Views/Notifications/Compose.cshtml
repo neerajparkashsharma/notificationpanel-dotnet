@@ -1,0 +1,144 @@
+﻿@{
+    var item = ViewBag.Item;
+
+    <h4 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300">
+        Send Notification
+    </h4>
+    <form action="/Notifications/Compose/" method="post" name="action" enctype="multipart/form-data">
+        <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
+
+
+
+
+            <label class="block mt-4 text-sm">
+                <span class="text-gray-700 dark:text-gray-400">
+                    To
+                </span>
+                <select id="Receiver" name="ReceiverId" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+                    <option value="@item.ReceiverId" disabled>Select User</option>
+
+                </select>
+            </label>
+
+            @*<div class="mt-4 text-sm">
+            <span class="text-gray-700 dark:text-gray-400">
+                Account Type
+            </span>
+            <div class="mt-2">
+                <label class="inline-flex items-center text-gray-600 dark:text-gray-400">
+                    <input type="radio"
+                           class="text-purple-600 form-radio focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                           name="accountType"
+                           value="personal"/>
+                    <span class="ml-2">Personal</span>
+                </label>
+
+
+                <label class="inline-flex items-center ml-6 text-gray-600 dark:text-gray-400">
+                    <input type="radio"
+                           class="text-purple-600 form-radio focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                           name="accountType"
+                           value="busines" />
+                    <span class="ml-2">Business</span>
+                </label>
+            </div>
+        </div>*@
+
+            @*<label class="block mt-4 text-sm">
+            <span class="text-gray-700 dark:text-gray-400">
+                Requested Limit
+            </span>
+            <select class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+                <option>$1,000</option>
+                <option>$5,000</option>
+                <option>$10,000</option>
+                <option>$25,000</option>
+            </select>
+        </label>
+
+        <label class="block mt-4 text-sm">
+            <span class="text-gray-700 dark:text-gray-400">
+                Multiselect
+            </span>
+            <select class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-multiselect focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                    multiple>
+                <option>Option 1</option>
+                <option>Option 2</option>
+                <option>Option 3</option>
+                <option>Option 4</option>
+                <option>Option 5</option>
+            </select>
+        </label>*@
+
+
+            <label class="block text-sm">
+                <span class="text-gray-700 dark:text-gray-400">Subject</span>
+                <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                       name="Subject" value="@item.Subject" placeholder="Subject" />
+            </label>
+
+
+
+
+            <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                   name="SenderId" value="@ViewBag.SenderId" placeholder="SenderId" style="display:none" />
+
+
+
+            <label class="block mt-4 text-sm">
+                <span class="text-gray-700 dark:text-gray-400">Message</span>
+                <input class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                       name="NotificationText" value="@item.NotificationText"
+                       placeholder="Enter some long form content." />
+            </label>
+
+
+
+            <label class="block mt-4 text-sm">
+                <span class="text-gray-700 dark:text-gray-400">Upload Image</span>
+                <input type="file" name="file" id="file" class="btn btn-primary" accept="image/*" />
+
+            </label>
+
+
+        
+
+            <input type="hidden" name="file" value="@item.file" />
+
+            <br />
+            <button class="px-10 py-4 font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple" id="btnSubmit">
+                Send
+            </button>
+        </div>
+
+
+
+    </form>
+
+    <script>
+
+        $(document).ready(function () {
+            $.get('ReceiverList', function (data) {
+                console.log(data)
+                $.each(data, function (index, value) {
+                    console.log(index + value.Email)
+                    $('<option>').val(value.Id).text(value.Email).appendTo("#Receiver");
+
+                })
+
+            })
+
+
+            $("#Receiver").select2();
+
+        })
+
+
+
+
+
+
+    </script>
+
+
+}

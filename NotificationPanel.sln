@@ -1,0 +1,69 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31605.320
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationPanel", "NotificationPanel\NotificationPanel.csproj", "{AA064EC0-250E-4984-839D-B404AB6B85C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationPanel.Repository", "NotificationPanel.Repository\NotificationPanel.Repository.csproj", "{CFCD1594-9B42-42F6-AA48-61CD3706B5E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationPanel.Database", "NotificationPanel.Database\NotificationPanel.Database.csproj", "{F4A63827-CA34-4C5C-B165-5627E735DFD5}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "NotificationPanel.DbInstance", "NotificationPanel.DbInstance\NotificationPanel.DbInstance.sqlproj", "{12E562B8-CE3D-4696-B109-8FD33B99CCC0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationPanel.Common", "NotificationPanel.Common\NotificationPanel.Common.csproj", "{C4147713-183E-4616-AA15-B5EF088F1E29}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AA064EC0-250E-4984-839D-B404AB6B85C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA064EC0-250E-4984-839D-B404AB6B85C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA064EC0-250E-4984-839D-B404AB6B85C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA064EC0-250E-4984-839D-B404AB6B85C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFCD1594-9B42-42F6-AA48-61CD3706B5E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFCD1594-9B42-42F6-AA48-61CD3706B5E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFCD1594-9B42-42F6-AA48-61CD3706B5E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFCD1594-9B42-42F6-AA48-61CD3706B5E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4A63827-CA34-4C5C-B165-5627E735DFD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4A63827-CA34-4C5C-B165-5627E735DFD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4A63827-CA34-4C5C-B165-5627E735DFD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4A63827-CA34-4C5C-B165-5627E735DFD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12E562B8-CE3D-4696-B109-8FD33B99CCC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12E562B8-CE3D-4696-B109-8FD33B99CCC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12E562B8-CE3D-4696-B109-8FD33B99CCC0}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{12E562B8-CE3D-4696-B109-8FD33B99CCC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12E562B8-CE3D-4696-B109-8FD33B99CCC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12E562B8-CE3D-4696-B109-8FD33B99CCC0}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{C4147713-183E-4616-AA15-B5EF088F1E29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4147713-183E-4616-AA15-B5EF088F1E29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4147713-183E-4616-AA15-B5EF088F1E29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4147713-183E-4616-AA15-B5EF088F1E29}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AAE082CC-C037-492F-B12D-37E508BC283D}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 5
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://dev.azure.com/binaryesolutions
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = NotificationPanel.Common\\NotificationPanel.Common.csproj
+		SccProjectName1 = NotificationPanel.Common
+		SccLocalPath1 = NotificationPanel.Common
+		SccProjectUniqueName2 = NotificationPanel.Database\\NotificationPanel.Database.csproj
+		SccProjectName2 = NotificationPanel.Database
+		SccLocalPath2 = NotificationPanel.Database
+		SccProjectUniqueName3 = NotificationPanel.Repository\\NotificationPanel.Repository.csproj
+		SccProjectName3 = NotificationPanel.Repository
+		SccLocalPath3 = NotificationPanel.Repository
+		SccProjectUniqueName4 = NotificationPanel\\NotificationPanel.csproj
+		SccProjectName4 = NotificationPanel
+		SccLocalPath4 = NotificationPanel
+	EndGlobalSection
+EndGlobal
