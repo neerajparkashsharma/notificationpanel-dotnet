@@ -25,23 +25,43 @@ namespace NotificationPanel.Controllers
         [Authorize]
         public ActionResult UserDashboard()
         {
-            
-           ViewBag.UserOnline = userRepository.GetOnlineUsers();
-            ViewBag.LastActiveUsers = userRepository.GetUser().Where(x=>x.IsOnline == false);
+
+            ViewBag.UserOnline = userRepository.GetOnlineUsers();
+            ViewBag.LastActiveUsers = userRepository.GetUser().Where(x => x.IsOnline == false);
             ViewBag.TotalUsersActive = userRepository.GetUser();
             if (Session["UserId"] != null)
             {
 
-            ViewBag.unRead = notificationRepository.GetNotificationByReceiverId(Convert.ToInt64(Session["UserId"])).Where(x => x.IsRead != true).ToList();
+                ViewBag.unRead = notificationRepository.GetNotificationByReceiverId(Convert.ToInt64(Session["UserId"])).Where(x => x.IsRead != true).ToList();
 
             }
 
             ViewBag.DisabledUsers = userRepository.GetDisabledUsers();
+
+
+
+            //Factory Method 
+
+
+            UserFactory uf = new Repository.UserFactory();
+            IUserRepo ur = uf.GetUser("ADMIN");
+
+            ViewBag.listOfAdmins = ur.findAll();
+
+
             return View();
 
-         }
+        }
 
-       
+
+
+        public ActionResult DP()
+        {//proxy
+            Proxy p = new Proxy();
+            p.FindAll();
+            return View();
+        }
+
 
 
     }

@@ -11,8 +11,8 @@ using System.Web.Mvc;
 
 namespace NotificationPanel.Controllers
 {
-   
-    
+
+
     public class NotificationsController : Controller
     {
 
@@ -27,14 +27,14 @@ namespace NotificationPanel.Controllers
             //    var IsId = Int64.TryParse(Id, out ItemId);
             //    if (IsId)
             //    {
-                   
+
             //        NotificationRepository notificationRepository = new NotificationRepository();
             //        var item = notificationRepository.GetNotification(Convert.ToInt64(Id));
 
-                    
+
 
             //        ViewBag.Item = item;
-                   
+
             //    }
             //    else
             //    {
@@ -45,46 +45,56 @@ namespace NotificationPanel.Controllers
 
             //else
             //{
-               
-               
-                    ViewBag.Item = new DTONotification();
-            ViewBag.SenderId = Convert.ToInt64(Session["UserId"]);
-                    ViewBag.ReceiverList =(u.GetUser().ToList());
 
-    
+
+            ViewBag.Item = new DTONotification();
+            ViewBag.SenderId = Convert.ToInt64(Session["UserId"]);
+            ViewBag.ReceiverList = (u.GetUser().ToList());
+
+
 
 
             //}
-           
+
             return View();
         }
 
         [HttpPost]
         public virtual ActionResult Compose(DTONotification obj)
         {
+
+           
             RequestMessage requestMessage = new RequestMessage();
+            NotificationPanelEntities2 db = new NotificationPanelEntities2();
+
 
             // Initialize Respository
-           
+
             try
             {
-                if (obj.file !=null)
+                if (obj.file != null)
                 {
                     string ImageName = System.IO.Path.GetFileName(obj.file.FileName);
                     string physicalPath = Server.MapPath("~/Images/" + ImageName);
-                   obj.file.SaveAs(physicalPath);
+                    obj.file.SaveAs(physicalPath);
+               
 
-                   
-                    obj.Image = ImageName;
+                        
+                        obj.Image = ImageName;
+            
                     obj = objNotificationRepository.SaveNotification(obj);
                     return RedirectToAction("Sent");
                 }
                 else
                 {
                     obj = objNotificationRepository.SaveNotification(obj);
+
+                 
+                      
+                  
                     return RedirectToAction("Sent");
                 }
-             
+
 
 
                 //}
@@ -102,7 +112,7 @@ namespace NotificationPanel.Controllers
         }
 
 
-        public  ActionResult All()
+        public ActionResult All()
         {
 
 
@@ -120,14 +130,70 @@ namespace NotificationPanel.Controllers
 
         }
 
+
+        public ActionResult Requests()
+        {
+
+            NotificationPanelEntities2 db = new NotificationPanelEntities2();
+
+            if (Session["UserId"] != null)
+            {
+
+                var uid = Session["UserId"];
+
+                var cuid = Convert.ToInt64(uid);
+
+
+
+                ViewBag.list = objNotificationRepository.GetNotificationByReceiverId(cuid).Where(x => x.IsAccepted != true && x.IsRejected != true).ToList();
+                //db.MessageRequests.ToList().Where(x=>x.User == uid).
+
+                //db.Notifications.Where(x=>x.ReceiverId == Convert.ToInt64(uid))
+
+                //ViewBag.list = ne.Notifications.ToList().Where(x => x.ReceiverId == Convert.ToInt64(uid)).Where(x=>x.User1.Notifications1.Contains());
+                //ViewBag.list = objNotificationRepository.GetNotificationByReceiverId(Convert.ToInt64(Session["UserId"])).Where(x=>x.);
+                return View();
+
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+
+            }
+
+
+
+
+        }
+
+
+        public long findGroup(long? user1, long? user2)
+        {
+            NotificationPanelEntities2 db = new NotificationPanelEntities2();
+
+            try { 
+             var group = db.MessageRequests.Where(x => (x.UserId == user1 || x.User2Id == user1) && (x.UserId == user2 || x.User2Id == user2)).FirstOrDefault().Id;
+
+                    return group;
+            }
+
+            catch(Exception e)
+            {
+                    return 0;
+            }
+            
+        }
+
+
+
         [Authorize]
         public ActionResult Unread()
         {
 
             if (Session["UserId"] != null)
             {
-                ViewBag.list = objNotificationRepository.GetNotificationByReceiverId(Convert.ToInt64(Session["UserId"])).Where(x=>x.IsRead != true);
-                
+                ViewBag.list = objNotificationRepository.GetNotificationByReceiverId(Convert.ToInt64(Session["UserId"])).Where(x => x.IsRead != true);
+
                 return View();
 
             }
@@ -139,7 +205,7 @@ namespace NotificationPanel.Controllers
         }
 
 
-       
+
         [HttpPost]
         public JsonResult Read(string Id)
         {
@@ -147,22 +213,22 @@ namespace NotificationPanel.Controllers
             try
             {
                 NotificationRepository NotificationRepository = new NotificationRepository();
-                if (NotificationRepository.GetNotification(Convert.ToInt64(Id)).IsRead != true )
+                if (NotificationRepository.GetNotification(Convert.ToInt64(Id)).IsRead != true)
                 {
 
-              
-         
-                var data = NotificationRepository.Set_IsRead(Convert.ToInt64(Id));
-                
-                requestMessage.IsSuccess = true;
-                requestMessage.RequestedString = "Read Successfully!";
+
+
+                    var data = NotificationRepository.Set_IsRead(Convert.ToInt64(Id));
+
+                    requestMessage.IsSuccess = true;
+                    requestMessage.RequestedString = "Read Successfully!";
                 }
 
             }
             catch (Exception e)
             {
                 requestMessage.IsSuccess = false;
-              
+
 
 
             }
@@ -189,20 +255,21 @@ namespace NotificationPanel.Controllers
 
 
 
-    
+
         [Authorize]
         public ActionResult View(long Id)
         {
 
-            if(Session["UserId"] == null)
+            if (Session["UserId"] == null)
             {
-                return RedirectToAction("Login", "Account"); 
+                return RedirectToAction("Login", "Account");
             }
 
-            else {
-              
+            else
+            {
 
-               
+
+
                 ViewBag.data = objNotificationRepository.GetNotificationView(Id, Convert.ToInt64(Session["UserId"]));
 
                 if (ViewBag.data == null)
@@ -212,24 +279,24 @@ namespace NotificationPanel.Controllers
                 }
                 else
                 {
-                    
+
                     return View();
                 }
-            
+
             }
 
-          
+
         }
 
 
 
-      
+
         public JsonResult ReceiverList()
         {
             UserRepository _userRepository = new UserRepository();
-            var list = _userRepository.GetUser().Where(x=>x.Id != Convert.ToInt64(Session["UserId"])).ToList();
+            var list = _userRepository.GetUser().Where(x => x.Id != Convert.ToInt64(Session["UserId"])).ToList();
 
-            return Json(list,JsonRequestBehavior.AllowGet);
+            return Json(list, JsonRequestBehavior.AllowGet);
 
         }
 

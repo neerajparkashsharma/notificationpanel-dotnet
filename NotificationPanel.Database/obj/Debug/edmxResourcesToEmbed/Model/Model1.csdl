@@ -19,6 +19,10 @@
     <NavigationProperty Name="User" Relationship="Self.FK_Notification_User" FromRole="Notification" ToRole="User" />
     <NavigationProperty Name="User1" Relationship="Self.FK_Notification_User1" FromRole="Notification" ToRole="User" />
     <Property Name="ReadOn" Type="DateTime" Precision="3" />
+    <Property Name="IsAccepted" Type="Boolean" />
+    <Property Name="IsRejected" Type="Boolean" />
+    <Property Name="GroupId" Type="Int64" />
+    <NavigationProperty Name="MessageRequest" Relationship="NotificationPanelModel.FK_Notification_MessageRequests" FromRole="Notification" ToRole="MessageRequest" />
   </EntityType>
   <EntityType Name="Role">
     <Key>
@@ -67,6 +71,8 @@
     <NavigationProperty Name="Notifications" Relationship="Self.FK_Notification_User" FromRole="User" ToRole="Notification" />
     <NavigationProperty Name="Notifications1" Relationship="Self.FK_Notification_User1" FromRole="User" ToRole="Notification" />
     <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
+    <NavigationProperty Name="MessageRequests" Relationship="NotificationPanelModel.FK_MessageRequests_User" FromRole="User" ToRole="MessageRequest" />
+    <NavigationProperty Name="MessageRequests1" Relationship="NotificationPanelModel.FK_MessageRequests_User1" FromRole="User" ToRole="MessageRequest" />
   </EntityType>
   <Association Name="FK_Notification_User">
     <End Role="User" Type="Self.User" Multiplicity="0..1" />
@@ -121,5 +127,113 @@
       <End Role="Role" EntitySet="Roles" />
       <End Role="User" EntitySet="Users" />
     </AssociationSet>
+    <EntitySet Name="PostTypes" EntityType="NotificationPanelModel.PostType" />
+    <EntitySet Name="MessageRequests" EntityType="NotificationPanelModel.MessageRequest" />
+    <AssociationSet Name="FK_MessageRequests_User" Association="NotificationPanelModel.FK_MessageRequests_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="MessageRequest" EntitySet="MessageRequests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MessageRequests_User1" Association="NotificationPanelModel.FK_MessageRequests_User1">
+      <End Role="User" EntitySet="Users" />
+      <End Role="MessageRequest" EntitySet="MessageRequests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Notification_MessageRequests" Association="NotificationPanelModel.FK_Notification_MessageRequests">
+      <End Role="MessageRequest" EntitySet="MessageRequests" />
+      <End Role="Notification" EntitySet="Notifications" />
+    </AssociationSet>
+    <EntitySet Name="Posts" EntityType="NotificationPanelModel.Post" />
+    <AssociationSet Name="FK_Posts_PostType" Association="NotificationPanelModel.FK_Posts_PostType">
+      <End Role="PostType" EntitySet="PostTypes" />
+      <End Role="Post" EntitySet="Posts" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="PostType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int64" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int64" />
+    <Property Name="IsActive" Type="Boolean" />
+    <NavigationProperty Name="Posts" Relationship="NotificationPanelModel.FK_Posts_PostType" FromRole="PostType" ToRole="Post" />
+  </EntityType>
+  <EntityType Name="MessageRequest">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" />
+    <Property Name="UserId" Type="Int64" />
+    <Property Name="User2Id" Type="Int64" />
+    <NavigationProperty Name="User" Relationship="NotificationPanelModel.FK_MessageRequests_User" FromRole="MessageRequest" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="NotificationPanelModel.FK_MessageRequests_User1" FromRole="MessageRequest" ToRole="User" />
+    <Property Name="IsAccepted" Type="Boolean" />
+    <Property Name="IsDiscarded" Type="Boolean" />
+    <NavigationProperty Name="Notifications" Relationship="NotificationPanelModel.FK_Notification_MessageRequests" FromRole="MessageRequest" ToRole="Notification" />
+  </EntityType>
+  <Association Name="FK_MessageRequests_User">
+    <End Type="NotificationPanelModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="NotificationPanelModel.MessageRequest" Role="MessageRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MessageRequest">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MessageRequests_User1">
+    <End Type="NotificationPanelModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="NotificationPanelModel.MessageRequest" Role="MessageRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MessageRequest">
+        <PropertyRef Name="User2Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Notification_MessageRequests">
+    <End Type="NotificationPanelModel.MessageRequest" Role="MessageRequest" Multiplicity="0..1" />
+    <End Type="NotificationPanelModel.Notification" Role="Notification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MessageRequest">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Notification">
+        <PropertyRef Name="GroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Post">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Body" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="PostType" Type="Int64" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int64" />
+    <Property Name="IsActive" Type="Boolean" />
+    <NavigationProperty Name="PostType1" Relationship="NotificationPanelModel.FK_Posts_PostType" FromRole="Post" ToRole="PostType" />
+  </EntityType>
+  <Association Name="FK_Posts_PostType">
+    <End Type="NotificationPanelModel.PostType" Role="PostType" Multiplicity="0..1" />
+    <End Type="NotificationPanelModel.Post" Role="Post" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PostType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Post">
+        <PropertyRef Name="PostType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

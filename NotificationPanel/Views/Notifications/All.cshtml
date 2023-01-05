@@ -20,7 +20,7 @@
                     <th class="px-4 py-3">Subject</th>
                     <th class="px-4 py-3">Notification</th>
                     <th class="px-4 py-3">Date-Time</th>
-                    <th class="px-4 py-3"></th>
+                    <th class="px-4 py-3">Status</th>
                 </tr>
             </thead>
 
@@ -89,6 +89,7 @@
                                 </span>
                             </td>
                             <td class="px-4 py-3 text-xs">
+                                @item.IsAccepted
                             </td>
 
                         </tr>
@@ -150,15 +151,18 @@
                                 <span class="px-2 py-1 font-semibold">
 
                                     @item.CreatedOn
-
+                                  
                                 </span>
 
 
                             </td>
 
                             <td class="px-4 py-3 text-xs">
-                                <span class="material-icons" style="font-size: 18px; background-color: #4334eb; color: #6c2bd9; ">
+                               <span class="px-2 py-1 font-semibold">
 
+                               
+
+                                  
                                 </span>
                             </td>
 

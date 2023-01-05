@@ -12,6 +12,13 @@
         <AssociationConnector Association="NotificationPanelModel.FK_Notification_User" ManuallyRouted="false" />
         <AssociationConnector Association="NotificationPanelModel.FK_Notification_User1" ManuallyRouted="false" />
         <AssociationConnector Association="NotificationPanelModel.FK_User_Role" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="NotificationPanelModel.PostType" Width="1.5" PointX="3.375" PointY="7.125" />
+        <EntityTypeShape EntityType="NotificationPanelModel.MessageRequest" Width="1.5" PointX="5.125" PointY="11.5" />
+        <AssociationConnector Association="NotificationPanelModel.FK_MessageRequests_User" />
+        <AssociationConnector Association="NotificationPanelModel.FK_MessageRequests_User1" />
+        <AssociationConnector Association="NotificationPanelModel.FK_Notification_MessageRequests" />
+        <EntityTypeShape EntityType="NotificationPanelModel.Post" Width="1.5" PointX="5.625" PointY="14.875" />
+        <AssociationConnector Association="NotificationPanelModel.FK_Posts_PostType" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

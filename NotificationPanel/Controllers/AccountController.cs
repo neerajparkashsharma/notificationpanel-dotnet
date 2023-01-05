@@ -26,35 +26,36 @@ namespace NotificationPanel.Controllers
             return View();
         }
 
-        [HttpPost]
-        public JsonResult CheckCredentials(string Email, string Password)
-        {
-            UserRepository _userRepository = new UserRepository();
-            bool Exists = false;
-            if (Email != null || Password != null)
-            {
+        //[HttpPost]
+        //public ActionResult CheckCredentials(string Email, string Password)
+        //{
+        //    UserRepository _userRepository = new UserRepository();
+        //    bool Exists = false;
+        //    if (Email != null || Password != null)
+        //    {
 
             
-            var list = _userRepository.GetUser()
-                .Where(x => x.Email.ToLower() == Email.ToLower() && x.Password.ToLower() == Password.ToLower())
-                .FirstOrDefault();
+        //    var list = _userRepository.GetUser()
+        //        .Where(x => x.Email.ToLower() == Email.ToLower() && x.Password.ToLower() == Password.ToLower())
+        //        .FirstOrDefault();
                 
-                if (list != null)
-                {
-                    Exists = true;  
-                    return Json(Exists);
-                }
-                else
-                {
+        //        if (list != null)
+        //        {
+        //            Exists = true;  
+                    
+        //            //return Json(Exists);
+        //        }
+        //        else
+        //        {
 
-                    Exists = false;
-                    return Json(Exists);
-                }
-            }
-            return Json(Exists);
+        //            Exists = false;
+        //            //return Json(Exists);
+        //        }
+        //    }
+        //    return View(Exists);
 
 
-        }
+        //}
 
 
         [HttpPost]
@@ -65,17 +66,30 @@ namespace NotificationPanel.Controllers
             if (l.Email  != null && l.Password !=null)
             {
 
+
+                var emailExists = _userRepository.GetUser()
+                    .Any(x => x.Email.ToLower() == l.Email.ToLower());
+
+
+                //var passwordExists = _userRepository.GetUser()
+                //    .Any(x=>x.Password.Equals(l.Password));
+
           
             var list = _userRepository.GetUser()
                 .Where(x => x.Email.ToLower() == l.Email.ToLower() && x.Password.ToLower() == l.Password.ToLower())
                 .FirstOrDefault();
-           
-            if (list != null)
+                if (emailExists)
+                {
+                    TempData["LoginError"] = "Incorrect Password!";
+                }
+                else
+                    TempData["LoginError"] = "Invalid Email Account!";
+                if (list != null)
             {
                 FormsAuthentication.SetAuthCookie(l.Email, false);
 
                     
-                     Session["UserId"] = list.Id;
+                    Session["UserId"] = list.Id;
                     Session["Name"] = list.Name;
                     Session["RoleId"] = list.RoleId;
                     Session["RoleName"] = list.RoleName;
@@ -84,9 +98,10 @@ namespace NotificationPanel.Controllers
                     Session["IsOnline"] = list.IsOnline;
                     Session["IsActive"] = list.IsActive;
                     Current.CurrentUser = list;
-                     
+                   
                 var data = _userRepository.Set_IsOnline(Convert.ToInt64(Session["UserId"]),true);
 
+            
                 
                 return RedirectToAction("UserDashboard", "Home");
             }

@@ -4,6 +4,9 @@
     <EntitySetMapping Name="Notifications">
       <EntityTypeMapping TypeName="NotificationPanelModel.Notification">
         <MappingFragment StoreEntitySet="Notification">
+          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+          <ScalarProperty Name="IsRejected" ColumnName="IsRejected" />
+          <ScalarProperty Name="IsAccepted" ColumnName="IsAccepted" />
           <ScalarProperty Name="ReadOn" ColumnName="ReadOn" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="NotificationText" ColumnName="NotificationText" />
@@ -64,6 +67,45 @@
           <ScalarProperty Name="IsOnline" ColumnName="IsOnline" />
           <ScalarProperty Name="LastOnlineDateTime" ColumnName="LastOnlineDateTime" />
           <ScalarProperty Name="Phone" ColumnName="Phone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PostTypes">
+      <EntityTypeMapping TypeName="NotificationPanelModel.PostType">
+        <MappingFragment StoreEntitySet="PostType">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MessageRequests">
+      <EntityTypeMapping TypeName="NotificationPanelModel.MessageRequest">
+        <MappingFragment StoreEntitySet="MessageRequests">
+          <ScalarProperty Name="IsDiscarded" ColumnName="IsDiscarded" />
+          <ScalarProperty Name="IsAccepted" ColumnName="IsAccepted" />
+          <ScalarProperty Name="User2Id" ColumnName="User2Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Posts">
+      <EntityTypeMapping TypeName="NotificationPanelModel.Post">
+        <MappingFragment StoreEntitySet="Posts">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="PostType" ColumnName="PostType" />
+          <ScalarProperty Name="Body" ColumnName="Body" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

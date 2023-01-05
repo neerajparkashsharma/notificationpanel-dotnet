@@ -9,7 +9,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title> Notification Panel</title>
+    <title> Guide Me </title>
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wghton400;500;600;700;800&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -34,7 +34,7 @@
             <div class="py-4 text-gray-500 dark:text-gray-400">
                 <a class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200"
                    href="/Home/UserDashboard">
-                    Notification Panel
+                    Guide Me
                 </a>
                 <div class="container relative px-6 py-3">
                     <ul class="mt-6">
@@ -49,7 +49,7 @@
                     <ul class="mt-6">
                         <li class="dropdown cssState flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
 
-                            Notifications
+                            Messages
 
                             <span class="material-icons">
                                 arrow_drop_down
@@ -57,6 +57,7 @@
                             <ul>
                                 <li class="dropdown cssState">
                                 <li><a href="/Notifications/All">All</a></li>
+                                <li><a href="/Notifications/Requests">Requests</a></li>
                                 <li><a href="/Notifications/Compose">Compose</a></li>
 
                                 <li><a href="/Notifications/Unread">Unread</a></li>
@@ -69,6 +70,27 @@
 
                     </ul>
                 </div>
+
+
+
+                <div class="container relative px-6 py-3">
+                    <ul class="mt-6">
+                        <li class="dropdown cssState flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+
+                            <a href="/Jobs/Index"> Job  Career</a>
+
+                        </li>
+
+
+
+                    </ul>
+
+
+                </div>
+
+
+
+
 
                 @if (Session["UserId"] != null)
                 {
@@ -104,8 +126,7 @@
 
             </div>
         </aside>
-        <!-- Mobile sidebar -->
-        <!-- Backdrop -->
+
         <div x-show="isSideMenuOpen"
              x-transition:enter="transition ease-in-out duration-150"
              x-transition:enter-start="opacity-0"
@@ -211,25 +232,43 @@
 
                         </li>
                         <li class="relative">
+                            @if (Session["Image"] == null)
+                            {
 
-                            <div class="py-4 text-gray-500 dark:text-gray-400">
-                                <button onclick=" window.open('/Users/YourProfile', '_self')" class="align-middle rounded-full focus:shadow-outline-purple focus:outline-none">
-                                    <img class="object-cover w-8 h-8 rounded-full"
-                                         src="@( "/Images/"+Session["Image"] )"
-                                         alt="@Session["Name"]'s Avatar "
-                                         onerror="'~/Images/avatar.png'"
-                                         aria-hidden="true" />
+                                <div class="py-4 text-gray-500 dark:text-gray-400">
+                                    <button onclick=" window.open('/Users/YourProfile', '_self')" class="align-middle rounded-full focus:shadow-outline-purple focus:outline-none">
+                                        <img class="object-cover w-8 h-8 rounded-full"
+                                             src="/Images/avatar.png"
+                                             @*alt="@Session["Name"]'s Avatar "*@
+                                             aria-hidden="true" />
 
-                                </button>
+                                    </button>
 
-                                <a class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200">@Session["Name"]</a>
-                            </div>
+                                    <a class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200">@Session["Name"]</a>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="py-4 text-gray-500 dark:text-gray-400">
+                                    <button onclick=" window.open('/Users/YourProfile', '_self')" class="align-middle rounded-full focus:shadow-outline-purple focus:outline-none">
+                                        <img class="object-cover w-8 h-8 rounded-full"
+                                             src="@( "/Images/"+Session["Image"])"
+                                             @*alt="@Session["Name"]'s Avatar "*@
+                                             aria-hidden="true" />
+
+                                    </button>
+
+                                    <a class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200">@Session["Name"]</a>
+                                </div>
+                            }
                         </li>
                     </ul>
                 </div>
 
             </header>
             <main class="h-full pb-16 overflow-y-auto">
+
+
                 <div class="container px-6 mx-auto grid">
                     @RenderBody()
                 </div>

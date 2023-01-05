@@ -7,9 +7,11 @@ using System.Threading.Tasks;
 using NotificationPanel.Database.Model;
 using NotificationPanel.Database.DTO;
 using NotificationPanel.Common;
+using System.Text.RegularExpressions;
+
 namespace NotificationPanel.Repository
 {
-    public class NotificationRepository : Repository
+    public  class NotificationRepository : Repository
     {
 
         #region Notification
@@ -40,7 +42,10 @@ namespace NotificationPanel.Repository
                 Subject = x.Subject,
                 Image = x.Image,
                 IsRead = x.IsRead,
-                ReadOn = x.ReadOn
+                ReadOn = x.ReadOn,
+                IsAccepted = x.IsAccepted,
+                IsRejected = x.IsRejected,
+                GroupId = x.GroupId
 
 
             })
@@ -76,7 +81,9 @@ namespace NotificationPanel.Repository
                 DTOObj.Image = obj.Image;
                 DTOObj.IsRead = obj.IsRead;
                 DTOObj.ReadOn = obj.ReadOn;
-         
+                DTOObj.IsAccepted = obj.IsAccepted;
+                DTOObj.IsRejected = obj.IsRejected;
+                DTOObj.GroupId = obj.GroupId;
                 return DTOObj;
 
             }
@@ -115,6 +122,10 @@ namespace NotificationPanel.Repository
                 dbObj.IsRead = DTOObj.IsRead;
                 dbObj.ReadOn = DTOObj.ReadOn;
 
+                dbObj.IsAccepted = DTOObj.IsAccepted;
+                dbObj.IsRejected = DTOObj.IsRejected;
+
+                dbObj.GroupId = DTOObj.GroupId;
             }
             else
             {
@@ -140,8 +151,9 @@ namespace NotificationPanel.Repository
 
                 dbObj.IsRead = DTOObj.IsRead;
                 dbObj.ReadOn = DTOObj.ReadOn;
-
-
+                dbObj.IsAccepted = DTOObj.IsAccepted;
+                dbObj.IsRejected = DTOObj.IsRejected;
+                dbObj.GroupId = DTOObj.GroupId;
                 db.Notifications.Add(dbObj);
             }
 
@@ -163,9 +175,11 @@ namespace NotificationPanel.Repository
             DTOObj.ReceiverEmail = dbObj.User1 == null ? " " : dbObj.User1.Email;
             DTOObj.Subject = dbObj.Subject;
             DTOObj.Image = dbObj.Image;
-            dbObj.IsRead = DTOObj.IsRead;
-            dbObj.ReadOn = DTOObj.ReadOn;
-
+            DTOObj.IsRead = dbObj.IsRead;
+            DTOObj.ReadOn = dbObj.ReadOn;
+            DTOObj.IsAccepted = dbObj.IsAccepted;
+            DTOObj.IsRejected = dbObj.IsRejected;
+            DTOObj.GroupId = dbObj.GroupId;
             return DTOObj;
         }
 
@@ -200,8 +214,9 @@ namespace NotificationPanel.Repository
             DTOObj.Image = dbObj.Image;
             DTOObj.IsRead = dbObj.IsRead;
             DTOObj.ReadOn = dbObj.ReadOn;
-
-
+            DTOObj.IsAccepted = dbObj.IsAccepted;
+            DTOObj.IsRejected = dbObj.IsRejected;
+            DTOObj.GroupId = dbObj.GroupId;
             return DTOObj;
         }
 
@@ -237,6 +252,9 @@ namespace NotificationPanel.Repository
             DTOObj.Image = dbObj.Image;
             DTOObj.IsRead = dbObj.IsRead;
             DTOObj.ReadOn = dbObj.ReadOn;
+            DTOObj.IsAccepted = dbObj.IsAccepted;
+            DTOObj.IsRejected = dbObj.IsRejected;
+            DTOObj.GroupId = dbObj.GroupId;
             return DTOObj;
         }
 
@@ -272,8 +290,10 @@ namespace NotificationPanel.Repository
                 Subject = x.Subject,
                 Image = x.Image,
                 IsRead =x.IsRead,
-                ReadOn = x.ReadOn
-               
+                ReadOn = x.ReadOn,
+                IsAccepted = x.IsAccepted,
+                IsRejected = x.IsRejected,
+                GroupId = x.GroupId
 
             })
             .ToList();
@@ -311,7 +331,9 @@ namespace NotificationPanel.Repository
                 DTOObj.ReadOn = obj.ReadOn;
                 DTOObj.Subject = obj.Subject;
                 DTOObj.Image = obj.Image;
-                
+                DTOObj.IsAccepted = obj.IsAccepted;
+                DTOObj.IsRejected = obj.IsRejected;
+                DTOObj.GroupId = obj.GroupId;
                 return DTOObj;
 
             }
@@ -344,10 +366,12 @@ namespace NotificationPanel.Repository
                 Subject = x.Subject,
                 Image = x.Image,
                 ReceiverImage = x.User1 == null ? "" : x.User1.Image,
-                SenderImage = x.User == null ? "":x.User.Image  ,
+                SenderImage = x.User == null ? "" : x.User.Image,
                 IsRead = x.IsRead,
-                ReadOn = x.ReadOn
-
+                ReadOn = x.ReadOn,
+                IsAccepted = x.IsAccepted,
+                IsRejected = x.IsRejected,
+                GroupId=  x.GroupId
             })
             .ToList();
             return listNotification;
@@ -378,8 +402,10 @@ namespace NotificationPanel.Repository
                 Image = x.Image,
 
                 IsRead = x.IsRead,
-                ReadOn = x.ReadOn
-
+                ReadOn = x.ReadOn,
+                IsAccepted = x.IsAccepted,
+                IsRejected = x.IsRejected,
+                GroupId = x.GroupId
 
             })
             .ToList();

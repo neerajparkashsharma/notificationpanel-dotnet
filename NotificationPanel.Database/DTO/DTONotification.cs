@@ -79,6 +79,34 @@ namespace NotificationPanel.Database.DTO
 
         public HttpPostedFileBase file { get; set; }
 
-    }
+
+        public bool? IsAccepted { get; set; }
+
+
+        public string IsAcceptedStatus
+        {
+            get
+            {
+                return Convert.ToBoolean(IsAccepted) == true ? "Yes" : "No";
+            }
+
+        }
+
+
+        public bool? IsRejected { get; set; }
+
+
+        public string IsRejectedStatus
+        {
+            get
+            {
+                return Convert.ToBoolean(IsRejected) == true ? "Yes" : "No";
+            }
+
+        }
+        public long?GroupId { get; set; }
+
 
     }
+
+}

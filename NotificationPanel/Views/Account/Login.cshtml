@@ -1,6 +1,6 @@
 ﻿
 
-@{ 
+@{
     Layout = "";
 
 }
@@ -22,7 +22,7 @@
     <!-- Style -->
     <link rel="stylesheet" href="~/css/loginstyle.css">
 
-    <title>Notification Panel | Login</title>
+    <title>Guide Me | Login</title>
 </head>
 <body>
 
@@ -32,20 +32,20 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <img src="~/assets/img/login.svg" alt="Notification Panel" class="img-fluid"/>
+                    <img src="~/assets/img/login.svg" alt="Notification Panel" class="img-fluid" />
                 </div>
                 <div class="col-md-6 contents">
                     <div class="row justify-content-center">
                         <div class="col-md-8">
                             <div class="mb-4">
                                 <h3>Sign In</h3>
-                                <p class="mb-4" id="Message"></p>
+                                <p class="mb-4" id="Message" ></p>
                             </div>
-                            <form action="#" method="post">
-                               
+                            <form action="/Account/Login" method="post">
+
                                 <div class="form-group first">
                                     <label for="Email">Email</label>
-                                    <input type="text" name="Email" class="form-control" id="Email" required>
+                                    <input type="email" name="Email" class="form-control" id="Email" required>
                                 </div>
 
                                 <div class="form-group last mb-4">
@@ -53,10 +53,10 @@
                                     <input type="password" name="Password" class="form-control" id="Password" required>
                                 </div>
 
-                    
+
                                 <input type="submit" id="login" value="Log In" class="btn btn-block btn-primary">
 
-                                
+
                             </form>
                         </div>
                     </div>
@@ -67,12 +67,19 @@
         </div>
     </div>
 
-   
+
     <script src="~/js/jquery-3.3.1.min.js"></script>
     <script src="~/js/popper.min.js"></script>
     <script src="~/js/bootstrap.min.js"></script>
     <script src="~/js/main.js"></script>
+    <script>
+        var loginError = '@TempData["LoginError"]';
+        if (loginError) {
 
+            $("#Message").html(loginError);
+            $("#Message").css("color", "red");
+        }
+    </script>
     <script>
         $('#login').click(function () {
 
@@ -96,16 +103,17 @@
 
 
                 success: function (Exists) {
-                    var Message = $("#Message");
+
                     if (Exists) {
-                        
+
                     }
                     else {
-                        Message.html("Invalid Login");
-                        Message.css("color", "red");
-                        alert("Invalid Login");
-                        
-                       
+                   /*     $("#Message").html("Invalid Login");*/
+                        $("#Message").css("display":"block");
+
+                /*        alert("Invalid Login");*/
+
+
 
                     }
 

@@ -8,6 +8,7 @@ using NotificationPanel.Database.Model;
 
 namespace NotificationPanel.Repository
 {
+    //Singleton
     public class Repository
     {
         NotificationPanelEntities2 _db = new NotificationPanelEntities2();
@@ -16,8 +17,7 @@ namespace NotificationPanel.Repository
         protected NotificationPanelEntities2 db
         {
             get
-            {
-
+            { 
                 return _db;
             }
         }

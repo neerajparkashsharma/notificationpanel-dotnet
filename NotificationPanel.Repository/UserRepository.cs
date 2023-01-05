@@ -11,7 +11,7 @@ using NotificationPanel.Common;
 namespace NotificationPanel.Repository
 {
 
-    public class UserRepository : Repository
+    public  class UserRepository : Repository
     {
         #region User
 

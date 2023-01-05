@@ -1,0 +1,275 @@
+﻿
+@{ 
+    ViewBag.Title = "Message Requests";
+}
+
+   <!-- New Table -->
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.11.2/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.2/js/dataTables.jqueryui.min.js"></script>
+<link href="~/css/dataTables.jqueryui.min.css" rel="stylesheet" />
+
+<h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+    All Message Requests 
+</h2>
+<div class="w-full overflow-hidden rounded-lg shadow-xs">
+    <div class="w-full overflow-x-auto" id="tablediv" >
+        <table class="w-full whitespace-no-wrap" id="tableMain">
+
+            <thead>
+                <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                    <th class="px-4 py-3">Sender</th>
+                    <th class="px-4 py-3">Subject</th>
+                    <th class="px-4 py-3">Notification</th>
+                    <th class="px-4 py-3">Date-Time</th>
+                    <th class="px-4 py-3">Actions</th>
+                </tr>
+            </thead>
+
+            <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800" id="tableBody" style="scroll-behavior:unset;">
+
+                @if (ViewBag.list != null)
+                {
+
+
+
+                    foreach (var item in ViewBag.list)
+                    {
+
+                        if (item.IsRead == true)
+                        {
+
+                          
+                            <tr data-id="@item.Id" class="text-gray-700 dark:text-gray-400">
+                                <td class="px-4 py-3">
+                                    <div class="flex items-center text-sm">
+                                        <input style="display:none;" class="messageId" value="@item.Id" />
+                                        <!-- Avatar with inset shadow -->
+                                        <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
+                                            <img class="object-cover w-full h-full rounded-full"
+                                                 src="@(item.SenderImage == null ? "/Images/avatar.png" : "/Images/"+item.SenderImage)"
+                                                 alt="@(item.SenderImage)'s Avatar" />
+                                            <div class="absolute inset-0 rounded-full shadow-inner"
+                                                 aria-hidden="true"></div>
+                                        </div>
+                                        <div>
+                                            <p class="font-semibold">@item.SenderName</p>
+                                            <p class="text-xs text-gray-600 dark:text-gray-400">
+                                                @item.SenderEmail
+                                            </p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3 text-sm">
+                                    @item.Subject
+                                </td>
+                                <td class="px-4 py-3 text-xs">
+
+                                    <span class="px-2 py-1 font-semibold">
+                                        @if (item.NotificationText != null)
+                                        {
+                                            if (item.NotificationText.Length > 15)
+                                            {
+
+                                                @item.NotificationText.Remove(15);
+
+
+
+
+                                            }
+                                            else
+                                            {
+                                                @item.NotificationText
+                                            }
+                                        }
+
+                                    </span>
+                                </td>
+
+
+                                <td data-sort="@item.CreatedOn.ToString("yyyyMMddHHmmssffff")" class="px-4 py-3 text-xs">
+
+                                    <span class="px-2 py-1 font-semibold">
+
+                                        @item.CreatedOn
+
+                                    </span>
+                                </td>
+                                <td class="px-4 py-3 text-xs">
+                                    @item.IsAccepted
+                                </td>
+
+                            </tr>
+                           
+
+                        }
+
+                        else
+                        {
+
+                            <tr data-id="@item.Id" class="text-gray-700 dark:text-gray-400" style="background-color: #C9C789; ">
+                                <td class="px-4 py-3">
+                                    <div class="flex items-center text-sm">
+                                        <input style="display:none;" class="messageId" value="@item.Id" />
+                                        <!-- Avatar with inset shadow -->
+                                        <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
+                                            <img class="object-cover w-full h-full rounded-full"
+                                                 src="@(item.SenderImage == null ? "/Images/avatar.png" : "/Images/"+item.SenderImage)"
+                                                 alt="@(item.SenderImage)'s Avatar" />
+                                            <div class="absolute inset-0 rounded-full shadow-inner"
+                                                 aria-hidden="true"></div>
+                                        </div>
+                                        <div>
+                                            <p class="font-semibold">@item.SenderName</p>
+                                            <p class="text-xs text-gray-600 dark:text-gray-400">
+                                                @item.SenderEmail
+                                            </p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3 text-sm">
+                                    @item.Subject
+                                </td>
+                                <td class="px-4 py-3 text-xs">
+
+                                    <span class="px-2 py-1 font-semibold">
+                                        @if (item.NotificationText != null)
+                                        {
+                                            if (item.NotificationText.Length > 15)
+                                            {
+
+                                                @item.NotificationText.Remove(15);
+
+
+
+
+                                            }
+                                            else
+                                            {
+                                                @item.NotificationText
+                                            }
+                                        }
+
+                                    </span>
+                                </td>
+
+
+                                <td class="px-4 py-3 text-xs">
+
+                                    <span class="px-2 py-1 font-semibold">
+
+                                        @item.CreatedOn
+
+                                    </span>
+
+
+                                </td>
+
+                                <td class="px-4 py-3 text-xs">
+                                    <span class="px-2 py-1 font-semibold">
+
+
+
+                                        <button id="Disable" class="px-6 py-2 font-medium leading-5 text-white transition-colors duration-150 bg-red-600 border border-transparent rounded-lg active:bg-red-600 hover:bg-red-700 focus:outline-none focus:shadow-outline-red">
+                                            Reject
+                                        </button>
+
+                                        <button id="Disable" class="px-6 py-2 font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-red-600 hover:bg-red-700 focus:outline-none focus:shadow-outline-red">
+                                            Accept
+                                        </button>
+
+                                    </span>
+                                </td>
+
+
+                            </tr>
+                        }
+
+
+                    }
+
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+<script src="~/Scripts/Notifications.js"></script>
+@*<script>
+
+        $(document).ready(function () {
+
+
+            $("#tableMain").DataTable();
+
+            //$("#tableMain").css("border", "none");
+            $("#tablediv a").css({
+                "background-color": '#7e3af2',
+                'border' : 'none',
+                'color': 'white',
+                'font-size': '15px',
+
+            })
+            $("#tableMain_info").css
+                ({
+                    "color": "#707275", "text-transform": "uppercase", 'letter- spacing':
+                        '.025em', 'font-size': '.75rem',
+                    'font-weight':
+                        '600'
+                });
+            //$("#tablediv a#tableMain_previous").text("<");
+
+            //$("#tablediv a#tableMain_next").text(">");
+
+            $("Tbody Tr").hover(function () {
+                $(this).css({
+                    "box-shadow": " 0 0 7px #7e3af2", "border-color": "#9ecaed", "cursor": "pointer"
+                })
+
+            }, function () {
+                $(this).css({
+                    "box-shadow": "0 0 0 0 ", "border-color": ""
+                })
+            });
+
+            $('Tbody tr').click(function () {
+                var Id = $(this).data("id");
+                $.ajax({
+
+                        type: "POST",
+
+                        url: '@Url.Action("Read", "Notifications")',
+
+                        dataType: "json",
+
+                        data: JSON.stringify({ Id }),
+
+                        contentType: "application/json; charset=utf-8",
+
+                        dataType: "json",
+
+                        success: function (data) {
+
+                            console.log(data);
+
+                        }
+
+                });
+
+                window.open(`/Notifications/View/${Id}`, "_self")
+
+
+            });
+
+
+
+
+        });
+
+
+
+
+
+
+    </script>*@

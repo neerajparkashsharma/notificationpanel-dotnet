@@ -19,6 +19,8 @@ namespace NotificationPanel.Database.Model
         {
             this.Notifications = new HashSet<Notification>();
             this.Notifications1 = new HashSet<Notification>();
+            this.MessageRequests = new HashSet<MessageRequest>();
+            this.MessageRequests1 = new HashSet<MessageRequest>();
         }
     
         public long Id { get; set; }
@@ -44,5 +46,9 @@ namespace NotificationPanel.Database.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Notification> Notifications1 { get; set; }
         public virtual Role Role { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MessageRequest> MessageRequests { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MessageRequest> MessageRequests1 { get; set; }
     }
 }

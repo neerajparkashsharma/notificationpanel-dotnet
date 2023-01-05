@@ -13,3 +13,5 @@ D:\NotificationPanel\NotificationPanel.DbInstance\obj\Debug\Model.xml
 D:\NotificationPanel\NotificationPanel.DbInstance\obj\Debug\refactor.xml
 D:\NotificationPanel\NotificationPanel.DbInstance\obj\Debug\postdeploy.sql
 D:\NotificationPanel\NotificationPanel.DbInstance\obj\Debug\predeploy.sql
+D:\GuideMe\Notification-Panel\NotificationPanel.DbInstance\obj\Debug\NotificationPanel.DbInstance.dll
+D:\GuideMe\Notification-Panel\NotificationPanel.DbInstance\obj\Debug\NotificationPanel.DbInstance.pdb

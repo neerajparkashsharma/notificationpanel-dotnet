@@ -27,8 +27,12 @@ namespace NotificationPanel.Database.Model
         public Nullable<long> ReceiverId { get; set; }
         public Nullable<bool> IsRead { get; set; }
         public Nullable<System.DateTime> ReadOn { get; set; }
+        public Nullable<bool> IsAccepted { get; set; }
+        public Nullable<bool> IsRejected { get; set; }
+        public Nullable<long> GroupId { get; set; }
     
         public virtual User User { get; set; }
         public virtual User User1 { get; set; }
+        public virtual MessageRequest MessageRequest { get; set; }
     }
 }
